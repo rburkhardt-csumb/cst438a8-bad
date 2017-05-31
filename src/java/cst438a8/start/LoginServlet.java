@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author rburkhardt
  */
-public class loginServlet extends HttpServlet
+public class LoginServlet extends HttpServlet
 {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +32,7 @@ public class loginServlet extends HttpServlet
         String action = request.getParameter("action");
         if (action == null)
         {
-            action = "bad_login";
+            action = "login_user";
         }
         
         // perform action and set URL to the appropriate page, request and session values.
@@ -43,6 +43,7 @@ public class loginServlet extends HttpServlet
             if (playerDB.playerExists(username))
             {
                 player = playerDB.selectPlayer(username);
+                log(username);
                 request.setAttribute("player", player);
             }
             else

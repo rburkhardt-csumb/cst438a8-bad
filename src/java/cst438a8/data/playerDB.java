@@ -16,6 +16,28 @@ import javax.persistence.TypedQuery;
  */
 public class playerDB
 {
+    private static int playerCount;
+    
+    public static int countPlayers()
+    {
+        int count = 0;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT p.COUNT(*) FROM player p";
+        try
+        {
+            playerCount = (int) em.createNamedQuery(qString).getSingleResult();
+        }
+        catch (Exception e)
+        {
+            playerCount = 0;
+        }
+        finally
+        {
+            em.close();
+        }
+        return count;
+    }
+    
     public static Player selectPlayer(String username)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

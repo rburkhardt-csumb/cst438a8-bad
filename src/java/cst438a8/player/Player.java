@@ -6,7 +6,9 @@
 package cst438a8.player;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
@@ -18,27 +20,26 @@ public class Player implements Serializable
     private String username;
     private String firstName;
     private String lastName;
-    private ArrayList<Score> playersScores;
 
-    public Player()
+    /*public Player()
     {
         playerId = 0;
         username = "";
         firstName = "";
         lastName = "";
-        playersScores = null;
     }
     
     public Player(long playerId, String username, String firstName,
-            String lastName, ArrayList<Score> playersScores)
+            String lastName)
     {
         this.playerId = playerId;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.playersScores = playersScores;
-    }
-
+    }*/
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public void setPlayerId(long playerId)
     {
         this.playerId = playerId;
@@ -77,15 +78,5 @@ public class Player implements Serializable
     public String getLastName()
     {
         return lastName;
-    }
-
-    public void setPlayersScores(ArrayList<Score> playersScores)
-    {
-        this.playersScores = playersScores;
-    }
-
-    public ArrayList<Score> getPlayersScores()
-    {
-        return playersScores;
     }
 }

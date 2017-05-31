@@ -8,6 +8,9 @@ package cst438a8.player;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
@@ -17,10 +20,11 @@ class Score implements Serializable
 {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     private long scoreId;
+    private long playerId;
     private String date;
     private Integer score;
     
-    public Score()
+    /*public Score()
     {
         Date today = new Date();
         date = sdf.format(today);
@@ -32,6 +36,33 @@ class Score implements Serializable
         Date today = new Date();
         date = sdf.format(today);
         this.score = score;
+    }*/
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public void setScoreId(long scoreId)
+    {
+        this.scoreId = scoreId;
+    }
+
+    public long getScoreId()
+    {
+        return scoreId;
+    }
+
+    public void setPlayerId(long playerId)
+    {
+        this.playerId = playerId;
+    }
+
+    public long getPlayerId()
+    {
+        return playerId;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
     }
     
     public void setDate()
