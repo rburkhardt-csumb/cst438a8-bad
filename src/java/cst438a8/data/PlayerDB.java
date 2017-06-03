@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
  *
  * @author rburkhardt
  */
-public class playerDB
+public class PlayerDB
 {
     private static int playerCount;
     

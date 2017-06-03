@@ -6,6 +6,7 @@
 package cst438a8.player;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,40 +15,25 @@ import javax.persistence.Id;
  *
  * @author rburkhardt
  */
+@Entity
 public class Player implements Serializable
 {
-    private long playerId;
+    private Long id;
     private String username;
     private String firstName;
     private String lastName;
 
-    /*public Player()
-    {
-        playerId = 0;
-        username = "";
-        firstName = "";
-        lastName = "";
-    }
-    
-    public Player(long playerId, String username, String firstName,
-            String lastName)
-    {
-        this.playerId = playerId;
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }*/
-    
+    //private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public void setPlayerId(long playerId)
+    public Long getId()
     {
-        this.playerId = playerId;
+        return id;
     }
 
-    public long getPlayerId()
+    public void setId(Long id)
     {
-        return playerId;
+        this.id = id;
     }
 
     public void setUsername(String username)
@@ -78,5 +64,35 @@ public class Player implements Serializable
     public String getLastName()
     {
         return lastName;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Player))
+        {
+            return false;
+        }
+        Player other = (Player) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "";
     }
 }

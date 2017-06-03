@@ -15,11 +15,12 @@
     </head>
     <body>
         <h1>the Hangman Game</h1>
+        <h1>${message}</h1>
         <c:choose>
             <c:when test="${player == null}">
                 <h3>Welcome to the game.</h3>
                 <p>Would you like to sign-in and play?</p>
-                <form action="LoginServlet" method="post">
+                <form action="login" method="get">
                     <input type="hidden" name="action" value="login">
                     <label>Username:</label>
                     <input type="text" name="username"><br />
@@ -31,7 +32,7 @@
             <c:otherwise>
                 <h3>Hello, ${player.firstName}</h3>
                 <h4>Are you ready to play?</h4>
-                <form action="GameServlet" method="post">
+                <form action="game" method="post">
                     <input type="submit" value="Play">
                 </form>
             </c:otherwise>

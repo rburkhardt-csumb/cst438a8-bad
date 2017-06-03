@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cst438a8.start;
+package cst438a8.login;
 
-import cst438a8.data.playerDB;
+import cst438a8.data.PlayerDB;
 import cst438a8.player.Player;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
         
         String url = "/index.jsp";
         
@@ -32,23 +32,30 @@ public class LoginServlet extends HttpServlet
         String action = request.getParameter("action");
         if (action == null)
         {
-            action = "login_user";
+            action = "login";
         }
         
         // perform action and set URL to the appropriate page, request and session values.
-        if (action.equals("login_user"))
+        if (action.equals("login"))
         {
-            String username = (String) request.getAttribute("username");
-            Player player;
-            if (playerDB.playerExists(username))
-            {
-                player = playerDB.selectPlayer(username);
-                log(username);
+            String username = "funplay";//(String) request.getAttribute("username");
+            Player player = new Player();
+            long temp = 1;
+            player.setId(temp);
+            player.setUsername("funplay");
+            player.setFirstName("fun");
+            player.setLastName("play");
+            
+            String tempName = player.getUsername();
+            if (PlayerDB.playerExists(username))
+            {        
+                player = PlayerDB.selectPlayer(username);
                 request.setAttribute("player", player);
+                request.setAttribute("message", "player exists");
             }
             else
             {
-                String message = "Invalid player, please try again or create user profile.";
+                String message = "Invalid player, please try again or create user profile." + username;
                 request.setAttribute("player", null);
                 request.setAttribute("message", message);
             }
