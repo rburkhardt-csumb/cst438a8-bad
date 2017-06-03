@@ -23,7 +23,7 @@ public class Player implements Serializable
     private String firstName;
     private String lastName;
 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId()

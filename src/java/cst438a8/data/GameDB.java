@@ -5,6 +5,7 @@
  */
 package cst438a8.data;
 
+import cst438a8.game.Word;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -17,12 +18,12 @@ import javax.persistence.TypedQuery;
  */
 public class GameDB
 {
-    public static ArrayList<String> retrieveWords()
+    public static ArrayList<Word> retrieveWords()
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT w.Word FROM Word w";
-        TypedQuery<String> w = em.createQuery(qString, String.class);
-        ArrayList<String> words;
+        TypedQuery<Word> w = em.createQuery(qString, Word.class);
+        ArrayList<Word> words;
         try
         {
             words = new ArrayList<>(w.getResultList());

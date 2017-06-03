@@ -125,9 +125,13 @@ public class Game {
         {
             if (wordlist == null)
             {
-                wordlist = GameDB.retrieveWords();
+                //wordlist = GameDB.retrieveWords();
+                if (wordlist.isEmpty() || wordlist == null)
+                {
+                    return "failure";
+                }
             }
-            int t = generator.nextInt(wordlist.size());
+            int t = generator.nextInt(wordlist.size())+1;
             return wordlist.get(t);            
         }
         catch (Exception e)
