@@ -32,6 +32,14 @@ public class Word implements Serializable {
         this.id = id;
     }
 
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
